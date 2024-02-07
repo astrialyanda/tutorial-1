@@ -20,6 +20,10 @@ public class ProductServiceImpl implements ProductService{
         return product;
     }
 
+    public void deleteById(String productId) {
+        productRepository.deleteById(productId);
+    }
+
     @Override
     public List<Product> findAll() {
         Iterator<Product> productIterator = productRepository.findAll();
