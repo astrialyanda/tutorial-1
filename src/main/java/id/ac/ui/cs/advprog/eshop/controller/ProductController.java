@@ -10,48 +10,52 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/product")
 public class ProductController {
 
     @Autowired
     private ProductService service;
 
-    @GetMapping("/create")
+    @GetMapping("/product/create")
     public String createProductPage(Model model) {
         Product product = new Product();
         model.addAttribute("product",product);
         return "createProduct";
     }
 
-    @PostMapping("/create")
+    @PostMapping("/product/create")
     public String createProductPost(@ModelAttribute Product product, Model model) {
         service.create(product);
         return "redirect:list";
     }
 
-    @PostMapping("/delete/{id}")
+    @PostMapping("/product/delete/{id}")
     public String deleteProduct(@PathVariable("id") String productId) {
         service.deleteById(productId);
         return "redirect:/product/list";
     }
 
-    @GetMapping("/edit/{id}")
+    @GetMapping("/product/edit/{id}")
     public String editProductPage(@PathVariable("id") String productId, Model model) {
         Product product = service.findById(productId);
         model.addAttribute("product", product);
         return "editProduct";
     }
 
-    @PostMapping("/edit")
+    @PostMapping("/product/edit")
     public String editProductPost(@ModelAttribute Product product, Model model) {
         service.update(product);
         return "redirect:list";
     }
 
-    @GetMapping("/list")
+    @GetMapping("/product/list")
     public String productListPage(Model model) {
         List<Product> allProducts = service.findAll();
         model.addAttribute("products", allProducts);
         return "productList";
+    }
+
+    @GetMapping("")
+    public String homePage(Model model) {
+        return "HomePage";
     }
 }
