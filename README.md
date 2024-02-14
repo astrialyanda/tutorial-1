@@ -1,3 +1,45 @@
+## Tutorial-2
+### Reflection
+1. List code quality issues yang sudah diperbaiki
+- Mengubah import modul
+```java
+import org.springframework.web.bind.annotation.*;
+```
+menjadi
+```java
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+```
+- Mengubah modifier interface yang sebelumnya public menjadi default
+- Mengubah for loop menjadi foreach loop
+```java
+public Product update(Product product) {
+    for (int i = 0; i < productData.size(); i++) {
+        if (productData.get(i).getProductId().equals(product.getProductId())){
+            Product existingProduct=productData.get(i);
+            existingProduct.setProductName(product.getProductName());
+            existingProduct.setProductQuantity(product.getProductQuantity());
+            return existingProduct;
+        }
+```
+menjadi
+```java
+public Product update(Product product) {
+    for (Product product1: productData) {
+        if (product1.getProductId().equals(product.getProductId())) {
+            Product existingProduct = product1;
+            existingProduct.setProductName(product.getProductName());
+            existingProduct.setProductQuantity(product.getProductQuantity());
+            return existingProduct;
+        }
+```
+
+2. menurut saya CI/CD workflows saya telah memenuhi definisi CI/CD. Dengan GitHub Actions saya menggunakan beberapa workflow yaitu ci.yml, pmd.yml, dan scorecard.yml yang akan ditrigger setiap ada push/pull. Dari workflow ini makan kode saya telah mengimplementasikan Continuous Integration. Lalu, saya mengimplementasikan Continuous Deployment dengan PaaS koyeb yang akan melakukan deployment setiap ada push/pull.
+
+
+## Tutorial-1
 ### Reflection 1
 Dalam pengerjaan fitur edit dan delete, prinsip _clean code_ yang telah saya <br>
 aplikasikan adalah: <br>
