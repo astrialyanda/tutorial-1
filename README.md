@@ -1,3 +1,30 @@
+link web app: https://advshop-aya.koyeb.app/
+
+## Tutorial-3
+### Reflection
+1. Explain what principles you apply to your project!
+- SRP (Single Responsibility Principle), setiap class hanya memiliki satu tugas atau tanggung jawab. <br>
+Aplikasi SRP pada kode saya adalah dengan memisahkan CarController, ProductController, dan HomePageController agar memiliki fungsinya masing-masing.
+- OCP (Open for Extension, Closed for Modification), class harus terbuka untuk extend namun tertutup untuk modifikasi. <br>
+Aplikasi OCP pada kode saya ada pada peletakan set update di model sehingga update model hanya dapat dilakukan di model itu sendiri.
+- ISP (Interface Segregation Principle), membagi interface menjadi kecil. <br>
+Aplikasi ISP pada kode saya adalah dengan membagi interface sesuai dengan kebutuhan yaitu CarService untuk Car dan ProductService untuk Product.
+- DIP (Dependency Inversion Principle), modul depend kepada abstraction. <br>
+Aplikasi DIP pada kode saya dengan mengganti datatype CarServiceImpl menjadi CarService pada controller untuk menghindari coupling.
+
+2. Explain the advantages of applying SOLID principles to your project with examples. <br>
+Keuntungan dari penggunaan SOLID principle antara lain
+- kode dapat dibaca dengan lebih mudah. Dengan aplikasi SRP, kode dibagi menjadi lebih kecil sesuai fungsinya sehingga kode dapat dimengerti lebih mudah. Keterbacaan kode juga dapat meningkatkan kerja dalam tim karena setiap anggota dapat mengerti kode lebih baik.
+- kode dapat diextend. Kode yang mengaplikasikan SOLID principle mendukung extension. Pada kode Car dan Product, jika akan menambahkan atribut baru, dengan mengaplikasikan OCP maka dapat melakukan extension.
+- menghindari munculnya lebih banyak bug. Aplikasi OCP meminimalisir munculnya bug baru yang dapat disebabkan oleh memodifikasi kode sebelumnya.
+- lebih mudah membuat testing, karena fungsi kode sudah dibagi kecil-kecil.
+
+3. Explain the disadvantages of not applying SOLID principles to your project with examples. <br>
+- kurangnya reusability karena fungsi kode tidak dibagi kecil-kecil.
+- kode yang lebih sulit dimengerti karena panjang dan sulit dibaca.
+- lebih rentan terhadap bug karena melakukan modifikasi pada kode.
+- lebih sulit membuat testing karena fungsi kode yang kompleks.
+
 ## Tutorial-2
 ### Reflection
 1. List code quality issues yang sudah diperbaiki
