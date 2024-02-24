@@ -14,4 +14,12 @@ public class Car {
     public Car() {
         this.carId = UUID.randomUUID().toString();
     }
+
+    public Car update(Car updatedCar) {
+        this.setCarName(updatedCar.getCarName());
+        this.setCarColor(updatedCar.getCarColor());
+        this.setCarQuantity(updatedCar.getCarQuantity());
+
+        return this;
+    }
 }

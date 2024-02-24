@@ -40,10 +40,7 @@ public class ProductRepository {
     public Product update(Product product) {
         for (Product product1: productData) {
             if (product1.getProductId().equals(product.getProductId())) {
-                Product existingProduct = product1;
-                existingProduct.setProductName(product.getProductName());
-                existingProduct.setProductQuantity(product.getProductQuantity());
-                return existingProduct;
+                product1.update(product);
             }
         }
         return null; // or throw exception if not found
