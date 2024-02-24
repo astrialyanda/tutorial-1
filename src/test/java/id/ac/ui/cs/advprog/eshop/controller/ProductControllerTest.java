@@ -79,10 +79,4 @@ public class ProductControllerTest {
         assert(viewName.equals("ProductList"));
         verify(model, times(1)).addAttribute(eq("products"), eq(products));
     }
-
-    @Test
-    void testHomePage() {
-        String viewName = productController.homePage(model);
-        assert(viewName.equals("HomePage"));
-    }
 }

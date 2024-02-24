@@ -13,4 +13,11 @@ public class Product {
     public Product() {
         this.productId = UUID.randomUUID().toString();
     }
+
+    public Product update(Product updatedProduct) {
+        this.setProductName(updatedProduct.getProductName());
+        this.setProductQuantity(updatedProduct.getProductQuantity());
+
+        return this;
+    }
 }
