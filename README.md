@@ -1,5 +1,11 @@
 link web app: https://advshop-aya.koyeb.app/
 
+## Tutorial-4
+### Reflection
+1. menurut saya flow TDD berguna untuk saya dalam membuat suatu code. Dengan menggunakan flow TDD, saya jadi langsung mengetahui apabila ada kesalahan/bug pada kode saya sehingga bisa segera diperbaiki. Selain itu, karena sudah terlebih dahulu membuat testing, saya jadi mengetahui bagian bagian mana yang mungkin menghasilkan bug sehingga bisa dihindari lebih awal. Hal-hal lain yang harus saya lakukan ke depannya adalah memastikan testing sudah mencakup sebanyak-banyaknya kemungkinan bug.
+
+2. menurut saya F.I.R.S.T. principle yaitu fast, isolated/independent, repeatable, self-validating, dan thorough/timely
+
 ## Tutorial-3
 ### Reflection
 1. Explain what principles you apply to your project!
