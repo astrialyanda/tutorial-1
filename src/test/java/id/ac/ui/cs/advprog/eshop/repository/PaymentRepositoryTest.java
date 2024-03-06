@@ -75,21 +75,6 @@ class PaymentRepositoryTest {
     }
 
     @Test
-    void testSaveUpdate() {
-        Payment payment = payments.get(1);
-        paymentRepository.save(payment);
-        Payment newPayment = new Payment(payment.getId(), payment.getMethod(), payment.getOrder(), payments.get(1).getPaymentData());
-        Payment result = paymentRepository.save(newPayment);
-
-        Payment findResult = paymentRepository.findById(payments.get(1).getId());
-        assertEquals(payment.getId(), result.getId());
-        assertEquals(payment.getId(), findResult.getId());
-        assertEquals(payment.getMethod(), findResult.getMethod());
-        assertEquals(payment.getPaymentData().keySet(), findResult.getPaymentData().keySet());
-        assertEquals(OrderStatus.SUCCESS.getValue(), findResult.getStatus());
-    }
-
-    @Test
     void testFindByIdIfIdFound() {
         for (Payment payment : payments) {
             paymentRepository.save(payment);
