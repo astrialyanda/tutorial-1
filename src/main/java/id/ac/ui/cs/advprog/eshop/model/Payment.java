@@ -1,5 +1,7 @@
 package id.ac.ui.cs.advprog.eshop.model;
 
+import id.ac.ui.cs.advprog.eshop.enums.PaymentStatus;
+import id.ac.ui.cs.advprog.eshop.enums.PaymentMethod;
 import lombok.Getter;
 
 import java.util.Map;
@@ -18,31 +20,35 @@ public class Payment {
         this.order = order;
         this.paymentData = paymentData;
 
-        if (this.method.equals("VOUCHER_CODE")) {
+        if (this.method.equals(PaymentMethod.VOUCHER_CODE.getValue())) {
             this.status = checkVoucherCode();
-        } else if (this.method.equals("BANK_TRANSFER")) {
+        } else if (this.method.equals(PaymentMethod.BANK_TRANSFER.getValue())) {
             this.status = checkBankTransfer();
-        } else if (this.method.equals("CASH_ON_DELIVERY")) {
+        } else if (this.method.equals(PaymentMethod.CASH_ON_DELIVERY.getValue())) {
             this.status = checkCashOnDelivery();
         }
     }
 
     public void setStatus(String status) {
-        this.status = status;
+        if (PaymentStatus.contains(status)) {
+            this.status = status;
+        } else {
+            throw new IllegalArgumentException();
+        }
     }
 
     public String checkVoucherCode() {
         String voucherCode = this.paymentData.get("voucherCode");
         if (voucherCode == null) {
-            return "REJECTED";
+            return PaymentStatus.REJECTED.getValue();
         }
 
         if (voucherCode.length() != 16) {
-            return "REJECTED";
+            return PaymentStatus.REJECTED.getValue();
         }
 
         if (!voucherCode.startsWith("ESHOP")) {
-            return "REJECTED";
+            return PaymentStatus.REJECTED.getValue();
         }
 
         int counter = 0;
@@ -52,10 +58,10 @@ public class Payment {
             }
         }
         if (counter != 8) {
-            return "REJECTED";
+            return PaymentStatus.REJECTED.getValue();
         }
 
-        return "SUCCESS";
+        return PaymentStatus.SUCCESS.getValue();
     }
 
     public String checkBankTransfer() {
@@ -63,12 +69,12 @@ public class Payment {
         String referenceCode = this.paymentData.get("referenceCode");
 
         if (bankName == null || bankName.isEmpty()) {
-            return "REJECTED";
+            return PaymentStatus.REJECTED.getValue();
         } else if (referenceCode == null || referenceCode.isEmpty()) {
-            return "REJECTED";
+            return PaymentStatus.REJECTED.getValue();
         }
 
-        return "SUCCESS";
+        return PaymentStatus.SUCCESS.getValue();
     }
 
     public String checkCashOnDelivery() {
@@ -76,11 +82,11 @@ public class Payment {
         String deliveryFee = this.paymentData.get("deliveryFee");
 
         if (address == null || address.isEmpty()) {
-            return "REJECTED";
+            return PaymentStatus.REJECTED.getValue();
         } else if (deliveryFee == null || deliveryFee.isEmpty()) {
-            return "REJECTED";
+            return PaymentStatus.REJECTED.getValue();
         }
 
-        return "SUCCESS";
+        return PaymentStatus.SUCCESS.getValue();
     }
 }
